@@ -269,15 +269,15 @@ pointT GetBoardLocation(const pointT& mouseClick) {
  * 		3. Otherwise, place a piece at random. 
  */
 /* TODO: Use MiniMax algorithm. */
-pointT GetBestMove(const gameT& game) {
+pointT GetBestMove(gameT& game) {
 	/* Look for a winning move */
 	for (size_t row = 0; row < kBoardSize; ++row) {
 		for (size_t col = 0; col < kBoardSize; ++col) {
 			if (game.board[row][col] == Player::EMPTY) {
-				Player newBoard[kBoardSize][kBoardSize];
-				memcpy(newBoard, game.board, sizeof(game.board));
-				newBoard[row][col] = Player::O;
-				if (GetWinner(newBoard) == Player::O) return pointT(row, col);
+				game.board[row][col] = Player::O;
+				bool isWinningMove = GetWinner(game.board) == Player::O;
+				game.board[row][col] = Player::EMPTY;
+				if (isWinningMove) return pointT(row, col);
 			}
 		}
 	}
@@ -286,10 +286,10 @@ pointT GetBestMove(const gameT& game) {
 	for (size_t row = 0; row < kBoardSize; ++row) {
 		for (size_t col = 0; col < kBoardSize; ++col) {
 			if (game.board[row][col] == Player::EMPTY) {
-				Player newBoard[kBoardSize][kBoardSize];
-				memcpy(newBoard, game.board, sizeof(game.board));
-				newBoard[row][col] = Player::X;
-				if (GetWinner(newBoard) == Player::X) return pointT(row, col);
+				game.board[row][col] = Player::X;
+				bool isWinningMove = GetWinner(game.board) == Player::X;
+				game.board[row][col] = Player::EMPTY;
+				if (isWinningMove) return pointT(row, col);
 			}
 		}
 	}
