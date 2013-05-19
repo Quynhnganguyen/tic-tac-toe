@@ -57,7 +57,7 @@ struct AllegroWrapper {
 		al_register_event_source(eventQueue, al_get_mouse_event_source());
 		al_register_event_source(eventQueue, al_get_timer_event_source(timer));
 
-		font = al_load_font("arial.ttf", 20, 0);
+		font = al_load_font("assets/arial.ttf", 20, 0);
 	}
 
 	~AllegroWrapper() {
@@ -84,8 +84,8 @@ struct gameT {
 		memset(board, static_cast<char>(Player::EMPTY), sizeof(board));
 
 		currPlayer = Player::X;
-		xImage = al_load_bitmap("X.png");
-		yImage = al_load_bitmap("O.png");
+		xImage = al_load_bitmap("assets/X.png");
+		yImage = al_load_bitmap("assets/O.png");
 	}
 
 	/* Sets the current player to the opposite (i.e. X->O, O->X). */

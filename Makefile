@@ -8,9 +8,8 @@ SOURCES = main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 TARGET = tic-tac-toe
 
-$(TARGET) : $(OBJECTS) Makefile.dependencies
+$(TARGET) : $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
-
 
 .PHONY: clean
 clean:
